@@ -25,6 +25,10 @@ app.add_middleware(
 ALPHA_VANTAGE_KEY = os.getenv("ALPHA_VANTAGE_API_KEY")
 AV_ENDPOINT = "https://www.alphavantage.co/query"
 
+@app.get("/")
+async def read_root():
+    return {"message": "Market Analyzer API is running. Go to /analyze/{ticker} to get data."}
+
 # --- Main Analysis Endpoint ---
 @app.get("/analyze/{ticker}")
 async def analyze_ticker(ticker: str):
